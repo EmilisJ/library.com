@@ -1,0 +1,70 @@
+################### AUTHOR
+author_index:
+  path: /admin/author/index
+  controller: App\Controller\AuthorController::index
+
+author_new:
+  path: /admin/author/new
+  controller: App\Controller\AuthorController::new
+
+author_show:
+  path: /admin/author/show/{id}
+  controller: App\Controller\AuthorController::show
+
+author_edit:
+  path: /admin/author/edit/{id}
+  controller: App\Controller\AuthorController::edit
+
+author_delete:
+  path: /admin/author/delete/{id}
+  controller: App\Controller\AuthorController::delete
+
+################### BOOK
+book_index:
+  path: /admin/book/index
+  controller: App\Controller\BookController::index
+
+book_new:
+  path: /admin/book/new
+  controller: App\Controller\BookController::new
+
+book_show:
+  path: /admin/book/show/{id}
+  controller: App\Controller\BookController::show
+
+book_edit:
+  path: /admin/book/edit/{id}
+  controller: App\Controller\BookController::edit
+
+book_delete:
+  path: /admin/book/delete/{id}
+  controller: App\Controller\BookController::delete
+
+################### API
+api_connect:
+  path: /api/connect
+  controller: App\Controller\ApiController::apiConnect
+  
+api_authorize:
+  path: /api/authorize
+  controller: App\Controller\ApiController::apiAuthorize
+
+api_mask_url:
+  path: /api/mask/url
+  controller: App\Controller\ApiController::apiMaskUrl
+
+################### USER AUTHENTICATOR CONTROLLER
+app_login:
+  path: 
+      root: /
+      login: /login
+  controller: App\Controller\UserAuthenticatorController::login
+
+app_logout:
+  path: /logout
+  controller: App\Controller\UserAuthenticatorController::logout
+
+welcome:
+  path: admin/welcome
+  controller: App\Controller\UserAuthenticatorController::welcome
+

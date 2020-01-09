@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Library{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the library!</h1>
+    <a href="{{ path('author_index') }}" class="btn-lg btn-success">Authors</a>
+    <a href="{{ path('book_index') }}" class="btn-lg btn-success">Books</a>
+{% endblock %}

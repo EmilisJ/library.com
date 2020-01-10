@@ -1,0 +1,7 @@
+imports:
+    - { resource: parameters.yaml }
+    # - { resource: security.yml }
+    # - { resource: services.yml }
+
+parameters:
+    access_token: "%token%""

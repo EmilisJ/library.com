@@ -19,3 +19,4 @@
 
 ###security
 /src/Security/AccessToken.php
+/config/parameters.yaml

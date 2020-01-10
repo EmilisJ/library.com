@@ -22,9 +22,9 @@
             <tr>
                 <th>List of books</th>
                 <td>
-                {% for book in author.books %}
+                {% for book in author.books|sort((a, b) => a.year <=> b.year) %}
                     <li style="list-style-type:none;">
-                        {{book}}
+                        {{book.year}} - {{book.title}}
                     </li>
                 {% endfor %}
                 </td>

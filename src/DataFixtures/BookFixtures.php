@@ -23,6 +23,12 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                 $book->addAuthor(
                     $this->getReference('author'.rand(0,19))
                 );
+                $book->addAuthor(
+                    $this->getReference('author'.rand(0,19))
+                );
+                $book->addAuthor(
+                    $this->getReference('author'.rand(0,19))
+                );
             // }
             $manager->persist($book);
             // $this->setReference('book'.$i, $book);

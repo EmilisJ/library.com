@@ -18,7 +18,7 @@
                 </th>
                 <th>Pages</th>
                 <th>Year</th>
-                <th>Author</th>
+                <th>Lead Author</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -30,9 +30,12 @@
                 <td>{{ book.pages }}</td>
                 <td>{{ book.year }}</td>
                 <td> 
-                    {% for author in book.authors %}
-                        {{author}}
-                    {% endfor %}
+                    {{book.authors[0]}}
+                    {# {% for author in book.authors|sort((a, b) => a.surname <=> b.surname) %}
+                        <li style="list-style-type:none;">
+                            {{author}}
+                        </li>
+                    {% endfor %} #}
                 </td>
                 <td>
                     <a href="{{ path('book_show', {'id': book.id}) }}">show</a>

@@ -68,7 +68,7 @@ class Author
     }
 
     public function __toString(){
-        return $this->name.' '.$this->surname;
+        return $this->surname.' '.$this->name;
     }
 
     /**

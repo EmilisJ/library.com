@@ -16,12 +16,22 @@
                 <td>{{ book.title }}</td>
             </tr>
             <tr>
-                <th>Pages</th>
-                <td>{{ book.pages }}</td>
+                <th>All Authors</th>
+                <td>
+                    {% for author in book.authors|sort((a, b) => a.surname <=> b.surname) %}
+                        <li style="list-style-type:none;">
+                            {{author}}
+                        </li>
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Year</th>
                 <td>{{ book.year }}</td>
+            </tr>
+            <tr>
+                <th>Pages</th>
+                <td>{{ book.pages }}</td>
             </tr>
             <tr>
                 <th>Description</th>

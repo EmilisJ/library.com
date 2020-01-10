@@ -42,7 +42,10 @@ book_delete:
 
 ################### API
 api_connect:
-  path: /api/connect
+  path: /
+      # root: /
+      # login: /login
+      # api: /api/connect
   controller: App\Controller\ApiController::apiConnect
   
 api_authorize:
@@ -54,12 +57,6 @@ api_mask_url:
   controller: App\Controller\ApiController::apiMaskUrl
 
 ################### USER AUTHENTICATOR CONTROLLER
-app_login:
-  path: 
-      root: /
-      login: /login
-  controller: App\Controller\UserAuthenticatorController::login
-
 app_logout:
   path: /logout
   controller: App\Controller\UserAuthenticatorController::logout

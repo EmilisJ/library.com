@@ -7,16 +7,22 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpClient\HttpClient;
-use App\Security\AccessToken;
+use Symfony\Component\Dotenv\Dotenv;
 
 class ApiController extends AbstractController
 {
+    private function getAccessToken(){
+        $dotenv = new Dotenv();
+        $dotenv->load('../.env.local');
+        return $_ENV['ACCESS_TOKEN'];
+    }
+
     public function apiConnect()
     {
         $client = HttpClient::create();
         $response = $client->request(
             'POST',
-            'https://id-sandbox.dokobit.com/api/authentication/create?access_token='.AccessToken::getAccessToken(),
+            'https://id-sandbox.dokobit.com/api/authentication/create?access_token='.$this->getAccessToken(),
             ['body' => 
                 ['return_url' => 'http://library.com/api/authorize']
             ]);
@@ -29,7 +35,7 @@ class ApiController extends AbstractController
     {
         $client = HttpClient::create();
         $sessionToken = $request->query->get('session_token');
-        $url = 'https://id-sandbox.dokobit.com/api/authentication/'.$sessionToken.'/status?access_token='.AccessToken::getAccessToken();
+        $url = 'https://id-sandbox.dokobit.com/api/authentication/'.$sessionToken.'/status?access_token='.$this->getAccessToken();
         $response = $client->request(
             'GET',
             $url

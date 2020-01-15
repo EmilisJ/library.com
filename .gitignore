@@ -15,8 +15,6 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-/src/DataFixtures/UserFixtures.php
 
-###security
-/src/Security/AccessToken.php
-/config/parameters.yaml
+### images ###
+/public/img

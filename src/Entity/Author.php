@@ -33,6 +33,11 @@ class Author
      */
     private $books;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photoFileName;
+
     public function __construct()
     {
         $this->books = new ArrayCollection();
@@ -93,6 +98,18 @@ class Author
         if ($this->books->contains($book)) {
             $this->books->removeElement($book);
         }
+
+        return $this;
+    }
+
+    public function getPhotoFileName(): ?string
+    {
+        return $this->photoFileName;
+    }
+
+    public function setPhotoFileName(?string $photoFileName): self
+    {
+        $this->photoFileName = $photoFileName;
 
         return $this;
     }

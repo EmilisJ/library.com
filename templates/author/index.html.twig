@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Photo</th>
                 <th>Name</th>
                 <th>
                     Surname
@@ -24,6 +25,13 @@
         {% for author in authors %}
             <tr>
                 <td>{{ author.id }}</td>
+                <td>
+                    {% if author.photoFileName != '' %}
+                        <img src=" {{ asset('img/authors/') ~ author.photoFileName }} " height="50">
+                    {% else %}
+                        <img src=" {{ asset('img/authors/default.jpeg')}} " height="50">
+                    {% endif %} 
+                </td>
                 <td>{{ author.name }}</td>
                 <td>{{ author.surname }}</td>
                 <td>

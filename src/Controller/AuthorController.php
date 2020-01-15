@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Controller;
-
-use App\Entity\Author;
-use App\Form\AuthorType;
-use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\File;
+use App\Entity\Author;
+use App\Form\AuthorType;
+use App\Repository\AuthorRepository;
+use App\Service\FileUploader;
 
 class AuthorController extends AbstractController
 {
@@ -27,7 +26,7 @@ class AuthorController extends AbstractController
         return $this->render('author/index.html.twig', $value);
     }
 
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $author = new Author();
         $form = $this->createForm(AuthorType::class, $author);
@@ -37,18 +36,8 @@ class AuthorController extends AbstractController
             
             $photoFile = $form['photo']->getData();
             if ($photoFile) {
-                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $newFilename = $originalFilename.'-'.uniqid().'.'.$photoFile->guessExtension();
-
-                try {
-                    $photoFile->move(
-                        $this->getParameter('photos_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-                $author->setPhotoFilename($newFilename);
+                $photoFileName = $fileUploader->upload($photoFile);
+                $author->setPhotoFilename($photoFileName);
             }
             
             $entityManager = $this->getDoctrine()->getManager();
@@ -71,7 +60,7 @@ class AuthorController extends AbstractController
         ]);
     }
 
-    public function edit(Request $request, Author $author): Response
+    public function edit(Request $request, Author $author, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(AuthorType::class, $author);
         $form->handleRequest($request);
@@ -79,18 +68,8 @@ class AuthorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $photoFile = $form['photo']->getData();
             if ($photoFile) {
-                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $newFilename = $originalFilename.'-'.uniqid().'.'.$photoFile->guessExtension();
-
-                try {
-                    $photoFile->move(
-                        $this->getParameter('photos_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-                $author->setPhotoFilename($newFilename);
+                $photoFileName = $fileUploader->upload($photoFile);
+                $author->setPhotoFilename($photoFileName);
             }
 
             $this->getDoctrine()->getManager()->flush();

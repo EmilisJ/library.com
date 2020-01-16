@@ -5,6 +5,14 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     photos_directory: '%kernel.project_dir%/public/img/authors'
+# Api access token
+    access_token:     '%env(ACCESS_TOKEN)%'
+# User Fixture data
+    fixture_name:     '%env(FIXTURE_NAME)%'
+    fixture_surname:  '%env(FIXTURE_SURNAME)%'
+    fixture_code:     '%env(FIXTURE_CODE)%'
+    fixture_email:    '%env(FIXTURE_EMAIL)%'
+    fixture_password: '%env(FIXTURE_PASSWORD)%'
 
 services:
     # default configuration for services in *this* file

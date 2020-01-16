@@ -1,0 +1,10 @@
+<?php
+
+return array (
+  'ACCESS_TOKEN' => NULL,
+  'FIXTURE_CODE' => NULL,
+  'FIXTURE_EMAIL' => NULL,
+  'FIXTURE_NAME' => NULL,
+  'FIXTURE_PASSWORD' => NULL,
+  'FIXTURE_SURNAME' => NULL,
+);

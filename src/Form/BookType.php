@@ -22,7 +22,7 @@ class BookType extends AbstractType
             ->add('authors', EntityType::class, [
                 'class' => Author::class,
                 'multiple' => true,
-                'expanded' => true,
+                // 'expanded' => true,
                 'by_reference' => false,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')

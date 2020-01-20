@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ApiController extends AbstractController
 {
@@ -17,7 +18,7 @@ class ApiController extends AbstractController
             'POST',
             'https://id-sandbox.dokobit.com/api/authentication/create?access_token='.$this->getParameter('access_token'),
             ['body' => 
-                ['return_url' => 'http://library.com/api/authorize']
+                ['return_url' => $this->generateUrl('api_authorize',[],UrlGeneratorInterface::ABSOLUTE_URL)]
             ]);
         $url = $response->toArray()['url'];
         return $this->redirect($url);

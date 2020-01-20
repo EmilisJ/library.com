@@ -27,8 +27,6 @@ class BookController extends AbstractController
 
     public function new(Request $request): Response
     {
-        // $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);

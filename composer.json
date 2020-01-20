@@ -32,6 +32,7 @@
         "symfony/twig-pack": "^1.0",
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
+        "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "5.0.*",
         "twbs/bootstrap": "^4.4"
     },
